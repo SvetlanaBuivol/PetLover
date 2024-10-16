@@ -5,4 +5,10 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/PetLover/',
+  resolve: {
+    alias: {
+      src: "/src",
+      components: "/src/components",
+    },
+  },
 })

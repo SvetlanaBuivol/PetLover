@@ -5,16 +5,16 @@ export const Section = styled.section`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url("src/assets/images/main/main-img-mb-1x.jpg");
+  background-image: url("images/main/main-img-mb-1x.jpg");
   background-size: cover;
   background-position: center;
 
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    background-image: url("src/assets/images/main/main-img-mb-2x.jpg");
+    background-image: url("images/main/main-img-mb-2x.jpg");
   }
 
   @media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
-    background-image: url("src/assets/images/main/main-img-mb-3x.jpg");
+    background-image: url("images/main/main-img-mb-3x.jpg");
   }
 `;
 
