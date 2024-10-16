@@ -1,12 +1,20 @@
 // import './App.css'
 
-function App() {
+import { Route, Routes } from "react-router-dom";
+import SharedLayout from "./components/SharedLayout/SharedLayout";
+import MainPage from "./pages/MainPage";
+import HomePage from "./pages/HomePage";
 
+function App() {
   return (
-    <>
-      <h1>Hello everybody!</h1>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<MainPage />} /> 
+      <Route path="/" element={<SharedLayout />}>
+         
+      <Route path='/home' element={<HomePage/>} /> 
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;

@@ -10,4 +10,14 @@ export const Box = styled.div`
   @media screen and (max-width: 375px) {
     width: 100%;
   }
+
+  @media screen and (min-width: 768px) {
+    width: 768px;
+    padding: 0 32px;
+  }
+
+   @media screen and (min-width: 1440px) {
+    /* flex-direction: row; */
+    width: 1280px;
+  }
 `;
