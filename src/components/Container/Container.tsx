@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react"
+import { Box } from "./Container.styled"
 
 type ComponentProps = {
     children: ReactNode,
@@ -6,7 +7,7 @@ type ComponentProps = {
 
 const Container:FC<ComponentProps> = ({children}) => {
     return (
-        <div>{children}</div>
+        <Box>{children}</Box>
    )
 }
 
