@@ -27,8 +27,8 @@ export const Logo = styled.div`
   line-height: 1;
   letter-spacing: -2px;
   opacity: 0;
-  transition: opacity 1.5s ease-in-out;
-  animation: fadeIn 1.5s forwards;
+  transition: opacity 2s ease-in-out;
+  animation: fadeIn 2s forwards;
   @keyframes fadeIn {
     to {
       opacity: 1;
@@ -39,4 +39,22 @@ export const Logo = styled.div`
 export const Svg = styled.svg`
   width: 44px;
   height: 44px;
+
+  animation: pulse 1s infinite;
+  transition: transform 0.2s ease-in-out;
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
 `;
