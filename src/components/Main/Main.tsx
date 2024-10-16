@@ -7,7 +7,7 @@ const Main: FC = () => {
       <Logo>
         <p>petl</p>
         <Svg>
-          <use xlinkHref="src/assets/svg/svgSprite.svg#icon-heart"></use>
+          <use xlinkHref="svg/svgSprite.svg#icon-heart"></use>
         </Svg>
         <p>ve</p>
       </Logo>
