@@ -1,16 +1,11 @@
 import { FC } from "react";
-import { Logo, Section, Svg } from "./Main.styled";
+import { Section } from "./Main.styled";
+import Logo from "../Logo/Logo";
 
 const Main: FC = () => {
   return (
     <Section>
-      <Logo>
-        <p>petl</p>
-        <Svg>
-          <use xlinkHref="svg/svgSprite.svg#icon-heart"></use>
-        </Svg>
-        <p>ve</p>
-      </Logo>
+      <Logo isMain={true} />
     </Section>
   );
 };

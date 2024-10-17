@@ -1,21 +1,19 @@
-import { FC, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import Main from "../components/Main/Main"
+import { FC, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Main from "../components/Main/Main";
 
 const MainPage: FC = () => {
-    // const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         navigate('/home')
-    //     }, 3000)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate("/home");
+    }, 3000);
 
-    //     return ()=> clearTimeout(timer)
-    // }, [navigate])
-    
-    return (
-       <Main/>
-   ) 
-}
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
-export default MainPage
+  return <Main />;
+};
+
+export default MainPage;

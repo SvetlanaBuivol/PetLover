@@ -8,10 +8,9 @@ import HomePage from "./pages/HomePage";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<MainPage />} /> 
+      <Route path="/" element={<MainPage />} />
       <Route path="/" element={<SharedLayout />}>
-         
-      <Route path='/home' element={<HomePage/>} /> 
+        <Route path="/home" element={<HomePage />} />
       </Route>
     </Routes>
   );

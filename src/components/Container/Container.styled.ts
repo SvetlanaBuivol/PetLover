@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Box = styled.div`
+  /* position: relative; */
   display: flex;
   flex-direction: column;
   padding: 0 20px;
@@ -16,7 +17,7 @@ export const Box = styled.div`
     padding: 0 32px;
   }
 
-   @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1440px) {
     /* flex-direction: row; */
     width: 1280px;
   }

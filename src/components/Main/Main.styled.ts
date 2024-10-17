@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LogoBox, Svg } from "../Logo/Logo.styled";
 
 export const Section = styled.section`
   display: flex;
@@ -76,54 +77,49 @@ export const Section = styled.section`
       background-position: center;
     }
   }
-`;
 
-export const Logo = styled.div`
-  display: flex;
-  align-items: flex-end;
-  color: var(--white-color);
-  font-size: var(--text-size-xl);
-  font-family: "Manrope-Bold";
-  line-height: 1;
-  letter-spacing: -2px;
-  opacity: 0;
-  transition: opacity 2s ease-in-out;
-  animation: fadeIn 2s forwards;
+  ${LogoBox} {
+    color: var(--white-color);
+    font-size: var(--text-size-xl);
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    animation: fadeIn 2s forwards;
 
-  @media screen and (min-width: 768px) {
-    font-size: 100px;
-  }
+    @media screen and (min-width: 768px) {
+      font-size: 100px;
+    }
 
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
     }
   }
-`;
 
-export const Svg = styled.svg`
-  width: 44px;
-  height: 44px;
-  animation: pulse 1s infinite;
-  transition: transform 0.2s ease-in-out;
+  ${Svg} {
+    width: 44px;
+    height: 44px;
+    animation: pulse 1s infinite;
+    transition: transform 0.2s ease-in-out;
 
-  @media screen and (min-width: 768px) {
-    width: 82px;
-    height: 82px;
-  }
-
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-      opacity: 1;
+    @media screen and (min-width: 768px) {
+      width: 82px;
+      height: 82px;
     }
-    50% {
-      transform: scale(1.1);
-      opacity: 0.7;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
   }
 `;

@@ -5,6 +5,7 @@
     --accent-color: #F6B83D;
     --accent-light-color: #FFF4DF;
     --white-color: #FFFFFF;
+    --white-color-40: rgba(255, 255, 255, 0.4);
     --bg-color: #F9F9F9;
     --error-color: #EF2447;
     --success-color: #08AA83;
@@ -15,7 +16,9 @@
     --text-size-s: 16px;
     --text-size-m: 18px;
     --text-size-l: 20px;
+    --text-size-l2: 28px;
     --text-size-xl: 50px;
     --text-size-xxl: 54px;
+    --text-size-xxl2: 80px;
     --text-size-xxxl: 90px;
 }
