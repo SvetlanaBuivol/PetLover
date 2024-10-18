@@ -1,0 +1,5 @@
+[
+    {"name": "News", "href": "/news"},
+    {"name": "Find pet", "href": "/notices"},
+    {"name": "Our friends", "href": "/friends"}
+]

@@ -1,23 +1,30 @@
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import Container from "../Container/Container";
-import Logo from "../Logo/Logo";
-import { Header, Svg } from "./SharedLayout.styled";
+import { StyledHeader } from "./SharedLayout.styled";
 import { Outlet, useLocation } from "react-router-dom";
+import MobileModal from "../Modals/MobileModal/MobileModal";
+import Header from "../Header/Header";
 
 const SharedLayout = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const location = useLocation();
   const isHome = location.pathname === "/home";
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
-      <Header $isHome={isHome}>
+      <StyledHeader $isHome={isHome}>
         <Container>
-          <Logo isHome={isHome} />
-          <Svg $isHome={isHome}>
-            <use xlinkHref="svg/svgSprite.svg#icon-menu"></use>
-          </Svg>
+          <Header isHome={isHome} onOpenModal={handleOpenModal} />
         </Container>
-      </Header>
+      </StyledHeader>
       <main>
         <Container>
           <Suspense>
@@ -25,6 +32,8 @@ const SharedLayout = () => {
           </Suspense>
         </Container>
       </main>
+
+          <MobileModal isOpen={isModalOpen} onClose={handleCloseModal} isHome={isHome} />
     </>
   );
 };
