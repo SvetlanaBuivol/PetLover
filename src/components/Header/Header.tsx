@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Logo from "../Logo/Logo";
 import { Button, Svg } from "./Header.styled";
+import { Link } from "react-router-dom";
 
 interface IHeader {
   isHome: boolean;
@@ -10,7 +11,9 @@ interface IHeader {
 const Header: FC<IHeader> = ({ isHome, onOpenModal }) => {
   return (
     <>
-      <Logo isHome={isHome} />
+      <Link to={"/home"}>
+        <Logo isHome={isHome} />
+      </Link>
       <Button onClick={onOpenModal}>
         <Svg $isHome={isHome}>
           <use xlinkHref="svg/svgSprite.svg#icon-menu"></use>
