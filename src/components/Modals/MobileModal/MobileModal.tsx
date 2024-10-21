@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { Backdrop, Button, Modal, Svg } from "./MobileModal.styled";
 import Container from "../../Container/Container";
 import Navigation from "../../Header/Navigation/Navigation";
+import AuthNav from "../../Header/AuthNav/AuthNav";
 
 interface IMobileModal {
   isOpen: boolean;
@@ -21,15 +22,30 @@ const MobileModal: FC<IMobileModal> = ({ isOpen, onClose, isHome = false }) => {
     if (event.target === event.currentTarget) {
       onClose();
     }
-  };
+    };
+    
+    useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = '';
+    }
 
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = ''; 
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [onClose]);
+  }, [isOpen, onClose]);
+
+//   useEffect(() => {
+//     document.addEventListener("keydown", handleKeyDown);
+//     return () => {
+//       document.removeEventListener("keydown", handleKeyDown);
+//     };
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//   }, [onClose]);
 
   const modalRoot = document.getElementById("modal-root") as HTMLElement | null;
   return isOpen && modalRoot
@@ -42,7 +58,8 @@ const MobileModal: FC<IMobileModal> = ({ isOpen, onClose, isHome = false }) => {
                   <use xlinkHref="svg/svgSprite.svg#icon-close"></use>
                 </Svg>
               </Button>
-                    <Navigation onClose={onClose} isHome={isHome} />
+              <Navigation onClose={onClose} isHome={isHome} />
+              <AuthNav isHome={isHome} onClose={onClose}/>
             </Modal>
           </Container>
         </Backdrop>,

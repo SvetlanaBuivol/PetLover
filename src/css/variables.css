@@ -6,6 +6,7 @@
     --accent-color: #F6B83D;
     --accent-light-color: #FFF4DF;
     --white-color: #FFFFFF;
+    --white-color-50: rgba(255, 255, 255, 0.5);
     --white-color-40: rgba(255, 255, 255, 0.4);
     --white-color-15: rgba(255, 255, 255, 0.15);
     --bg-color: #F9F9F9;

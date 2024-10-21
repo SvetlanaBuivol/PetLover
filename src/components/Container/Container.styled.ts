@@ -17,7 +17,7 @@ export const Box = styled.div`
     padding: 0 32px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1280px) {
     /* flex-direction: row; */
     width: 1280px;
   }
