@@ -1,6 +1,5 @@
 import { FC } from "react";
 import navListData from "../../../data/navList.json";
-// import { useLocation } from "react-router-dom";
 import { Item, List, StyledLink, StyledNav } from "./Navigation.styled";
 
 interface INavList {
@@ -16,19 +15,14 @@ interface INavigation {
 const navList: INavList[] = navListData;
 
 const Navigation: FC<INavigation> = ({ onClose, isHome }) => {
-  // const location = useLocation();
-
   return (
     <StyledNav>
       <List>
         {navList.map((item) => (
-          <Item
-            key={item.href}
-            onClick={onClose}
-            
-          >
-            <StyledLink to={item.href} 
-            $isHome={isHome}>{item.name}</StyledLink>
+          <Item key={item.href} onClick={onClose}>
+            <StyledLink to={item.href} $isHome={isHome}>
+              {item.name}
+            </StyledLink>
           </Item>
         ))}
       </List>

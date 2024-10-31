@@ -21,7 +21,7 @@ const Header: FC<IHeader> = ({ isHome, onOpenModal }) => {
         <Navigation isHome={isHome} />
       </MediaQuery>
       <MediaQuery minWidth={768}>
-              <AuthNav isHome={isHome} isHeader={true} />
+        <AuthNav isHome={isHome} isHeader={true} />
       </MediaQuery>
       <Button onClick={onOpenModal}>
         <Svg $isHome={isHome}>

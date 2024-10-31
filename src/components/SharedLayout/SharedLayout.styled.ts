@@ -22,10 +22,8 @@ export const StyledHeader = styled.header<{ $isHome: boolean }>`
 
   @media screen and (min-width: 1280px) {
     ${Box} {
-      padding: ${({ $isHome }) => ($isHome ? "0 96px" : "0 64px")};
+      padding: ${({ $isHome }) => ($isHome ? "0 96px" : "0 32px")};
     }
     padding-top: 32px;
   }
 `;
-
-

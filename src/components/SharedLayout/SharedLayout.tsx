@@ -33,7 +33,11 @@ const SharedLayout = () => {
         </Container>
       </main>
 
-          <MobileModal isOpen={isModalOpen} onClose={handleCloseModal} isHome={isHome} />
+      <MobileModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        isHome={isHome}
+      />
     </>
   );
 };

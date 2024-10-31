@@ -1,4 +1,3 @@
-// import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -39,8 +38,9 @@ export const StyledLink = styled(NavLink)<IStyledProps>`
   border-radius: 30px;
   cursor: pointer;
   color: ${({ $isHome }) =>
-  $isHome ? "var(--primary-text-color)" : "var(--white-color)"};
-    border: 1px solid ${({ $isHome }) =>
+    $isHome ? "var(--primary-text-color)" : "var(--white-color)"};
+  border: 1px solid
+    ${({ $isHome }) =>
       $isHome ? "var(--primary-text-color-15)" : "var(--white-color-40)"};
   transition: border 250ms ease-in-out;
   &:hover,
@@ -53,8 +53,9 @@ export const StyledLink = styled(NavLink)<IStyledProps>`
   @media screen and (min-width: 1280px) {
     color: ${({ $isHome }) =>
       $isHome ? "var(--white-color)" : "var(--primary-text-color)"};
-    border: 1px solid ${({ $isHome }) =>
-      $isHome ? "var(--white-color-40)" : "var(--primary-text-color-15)"};
+    border: 1px solid
+      ${({ $isHome }) =>
+        $isHome ? "var(--white-color-40)" : "var(--primary-text-color-15)"};
 
     width: fit-content;
 
