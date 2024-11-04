@@ -1,5 +1,12 @@
 import { FC } from "react";
-import { Wrapper, PetBox, Image, Header, Name, Description } from "./PetBlock.styled";
+import {
+  Wrapper,
+  PetBox,
+  Image,
+  Header,
+  Name,
+  Description,
+} from "./PetBlock.styled";
 import MediaQuery from "react-responsive";
 
 interface ImageSources {
@@ -75,24 +82,26 @@ const PetBlock: FC<IPetBlockProps> = ({ imageSources, petAdvert }) => {
       </picture>
 
       <MediaQuery minWidth={768}>
-      <PetBox>
-        <Image
-          src={
-            petAdvert.kind === "dog"
-              ? "images/petBlock/dog.png"
-              : "images/petBlock/cat.png"
-          }
-          alt="kind of pet"
-        />
-        <div>
-          <Header>
-            <Name>{petAdvert.name}</Name>
-            <p>Birthday: <span>{petAdvert.birth}</span></p>
-          </Header>
-          <Description>{petAdvert.descr}</Description>
-        </div>
+        <PetBox>
+          <Image
+            src={
+              petAdvert.kind === "dog"
+                ? "images/petBlock/dog.png"
+                : "images/petBlock/cat.png"
+            }
+            alt="kind of pet"
+          />
+          <div>
+            <Header>
+              <Name>{petAdvert.name}</Name>
+              <p>
+                Birthday: <span>{petAdvert.birth}</span>
+              </p>
+            </Header>
+            <Description>{petAdvert.descr}</Description>
+          </div>
         </PetBox>
-        </MediaQuery>
+      </MediaQuery>
     </Wrapper>
   );
 };

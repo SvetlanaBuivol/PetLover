@@ -6,13 +6,15 @@ import CommonInput from "../CommonInput/CommonInput";
 import { Button, Form } from "./LoginForm.styled";
 
 const LoginForm: FC = () => {
-  const { control, handleSubmit } = useForm<LoginFormData>({
+  const { control, handleSubmit, resetField, reset } = useForm<LoginFormData>({
     resolver: yupResolver(loginSchema),
   });
 
   const onSubmit = (data: LoginFormData) => {
     console.log("Login data: ", data);
+    reset()
   };
+  
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <CommonInput
@@ -20,6 +22,7 @@ const LoginForm: FC = () => {
         name="email"
         type="email"
         placeholder="Email"
+        resetField={resetField}
       />
       <CommonInput
         control={control}
