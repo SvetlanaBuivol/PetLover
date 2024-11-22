@@ -21,7 +21,8 @@ export const StyledNav = styled.nav<{ $isHeader: boolean }>`
 
   @media screen and (min-width: 1280px) {
     width: fit-content;
-    margin: 0;
+    margin-left: auto;
+    margin-right: 0;
   }
 `;
 

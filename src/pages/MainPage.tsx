@@ -1,7 +1,6 @@
 import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Main from "../components/Main/Main";
-// import Container from "../components/Container/Container";
 
 const MainPage: FC = () => {
   const navigate = useNavigate();
@@ -14,9 +13,7 @@ const MainPage: FC = () => {
     return () => clearTimeout(timer);
   }, [navigate]);
 
-  return (
-      <Main />
-  );
+  return <Main />;
 };
 
 export default MainPage;
