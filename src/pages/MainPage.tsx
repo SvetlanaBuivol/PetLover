@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Main from "../components/Main/Main";
-import Container from "../components/Container/Container";
+// import Container from "../components/Container/Container";
 
 const MainPage: FC = () => {
   const navigate = useNavigate();
@@ -15,9 +15,7 @@ const MainPage: FC = () => {
   }, [navigate]);
 
   return (
-    <Container>
       <Main />
-    </Container>
   );
 };
 
