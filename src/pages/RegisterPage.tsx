@@ -4,10 +4,11 @@ import AuthWhiteContainer from "../components/AuthWhiteContainer/AuthWhiteContai
 import Title from "../components/Title/Title";
 import LinkAuth from "../components/LinkAuth/LinkAuth";
 import RegisterForm from "../components/Forms/RegisterForm/RegisterForm";
+import Container from "../components/Container/Container";
 
 const RegisterPage: FC = () => {
   return (
-    <>
+    <Container>
       <PetBlock
         imageSources={{
           mobile: {
@@ -46,7 +47,7 @@ const RegisterPage: FC = () => {
           page={"/login"}
         />
       </AuthWhiteContainer>
-    </>
+    </Container>
   );
 };
 

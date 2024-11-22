@@ -8,16 +8,24 @@ import {
 import { Form } from "../LoginForm/LoginForm.styled";
 import CommonInput from "../CommonInput/CommonInput";
 import { Button } from "./RegisterForm.styled";
+import { useSignup } from "../../../hooks/auth/useSignup";
 
 const RegisterForm: FC = () => {
-  const { control, handleSubmit, resetField, reset } = useForm<RegisterFormData>({
-    resolver: yupResolver(registerSchema),
-    mode: "onChange",
-  });
+  const { control, handleSubmit, resetField, reset } =
+    useForm<RegisterFormData>({
+      resolver: yupResolver(registerSchema),
+      mode: "onChange",
+    });
+  
+  const {signup, error} = useSignup()
 
   const onSubmit = (data: RegisterFormData) => {
-      console.log("Register data: ", data);
-      reset()
+    console.log("Register data: ", data);
+    signup({email: data.email, password: data.password, name: data.name})
+    reset();
+    if (error) {
+      console.error(error)
+    }
   };
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -25,15 +33,15 @@ const RegisterForm: FC = () => {
         control={control}
         name="name"
         type="text"
-              placeholder="Name"
-              resetField={resetField}
+        placeholder="Name"
+        resetField={resetField}
       />
       <CommonInput
         control={control}
         name="email"
         type="email"
-              placeholder="Email"
-              resetField={resetField}
+        placeholder="Email"
+        resetField={resetField}
       />
       <CommonInput
         control={control}

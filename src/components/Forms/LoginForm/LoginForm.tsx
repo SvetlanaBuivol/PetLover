@@ -4,17 +4,21 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginFormData, loginSchema } from "../../../helpers/validationSchemas";
 import CommonInput from "../CommonInput/CommonInput";
 import { Button, Form } from "./LoginForm.styled";
+import { useSignin } from "../../../hooks/auth/useSignin";
 
 const LoginForm: FC = () => {
   const { control, handleSubmit, resetField, reset } = useForm<LoginFormData>({
     resolver: yupResolver(loginSchema),
   });
 
+  const { signin } = useSignin();
+
   const onSubmit = (data: LoginFormData) => {
     console.log("Login data: ", data);
-    reset()
+    signin({ email: data.email, password: data.password });
+    reset();
   };
-  
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <CommonInput

@@ -9,6 +9,8 @@ const SharedLayout = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const location = useLocation();
   const isHome = location.pathname === "/home";
+  const isAuth = !!localStorage.getItem('token')
+  console.log("SharedLayout  isAuth", isAuth)
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -26,11 +28,11 @@ const SharedLayout = () => {
         </Container>
       </StyledHeader>
       <main>
-        <Container>
+        {/* <Container> */}
           <Suspense>
             <Outlet />
           </Suspense>
-        </Container>
+        {/* </Container> */}
       </main>
 
       <MobileModal
