@@ -16,7 +16,7 @@ const navList: INavList[] = navListData;
 
 const Navigation: FC<INavigation> = ({ onClose, isHome }) => {
   return (
-    <StyledNav>
+    <StyledNav $isHome={isHome}>
       <List>
         {navList.map((item) => (
           <Item key={item.href} onClick={onClose}>

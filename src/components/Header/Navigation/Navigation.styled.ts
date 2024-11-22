@@ -5,8 +5,13 @@ interface IStyledProps {
   $isHome: boolean;
 }
 
-export const StyledNav = styled.nav`
+export const StyledNav = styled.nav<IStyledProps>`
   display: block;
+
+  @media screen and (min-width: 1280px) {
+    position: relative;
+    left: ${({ $isHome }) => ($isHome ? "280px" : "313px")};
+  }
 `;
 
 export const List = styled.ul`

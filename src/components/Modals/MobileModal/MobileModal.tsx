@@ -4,6 +4,7 @@ import { Backdrop, Button, Modal, Svg } from "./MobileModal.styled";
 import Container from "../../Container/Container";
 import Navigation from "../../Header/Navigation/Navigation";
 import AuthNav from "../../Header/AuthNav/AuthNav";
+import LogOutButton from "../../Header/UserNav/LogOutButton/LogOutButton";
 
 interface IMobileModal {
   isOpen: boolean;
@@ -12,6 +13,8 @@ interface IMobileModal {
 }
 
 const MobileModal: FC<IMobileModal> = ({ isOpen, onClose, isHome = false }) => {
+  const isAuth = localStorage.getItem("token");
+
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "Escape") {
       onClose();
@@ -39,14 +42,6 @@ const MobileModal: FC<IMobileModal> = ({ isOpen, onClose, isHome = false }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, onClose]);
 
-  //   useEffect(() => {
-  //     document.addEventListener("keydown", handleKeyDown);
-  //     return () => {
-  //       document.removeEventListener("keydown", handleKeyDown);
-  //     };
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   }, [onClose]);
-
   const modalRoot = document.getElementById("modal-root") as HTMLElement | null;
   return isOpen && modalRoot
     ? createPortal(
@@ -59,7 +54,11 @@ const MobileModal: FC<IMobileModal> = ({ isOpen, onClose, isHome = false }) => {
                 </Svg>
               </Button>
               <Navigation onClose={onClose} isHome={isHome} />
-              <AuthNav isHome={isHome} onClose={onClose} />
+              {isAuth ? (
+                <LogOutButton isHome={isHome} onClose={onClose}/>
+              ) : (
+                <AuthNav isHome={isHome} onClose={onClose} />
+              )}
             </Modal>
           </Container>
         </Backdrop>,

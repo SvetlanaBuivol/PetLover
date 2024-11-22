@@ -9,6 +9,7 @@ import NoticesPage from "./pages/NoticesPage";
 import FriendsPage from "./pages/FriendsPage";
 import RegisterPage from "./pages/RegisterPage";
 import LogInPage from "./pages/LogInPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/friends" element={<FriendsPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LogInPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Route>
     </Routes>
   );

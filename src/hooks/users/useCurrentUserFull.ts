@@ -6,5 +6,5 @@ export function useCurrentUserFull() {
     queryKey: ["currentUser"],
     queryFn: () => UsersService.fullUserInfo(),
   });
-  return { user: data, error };
+  return { user: data?.data, error };
 }
