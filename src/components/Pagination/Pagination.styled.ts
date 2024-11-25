@@ -21,6 +21,7 @@ export const ArrowsButton = styled.div<{ $isLeft?: boolean }>`
     svg {
       width: 20px;
       height: 20px;
+      fill: var(--primary-text-color);
       ${({ $isLeft }) =>
         $isLeft &&
         `
