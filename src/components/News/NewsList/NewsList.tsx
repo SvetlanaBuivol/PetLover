@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { INews } from "../../../models/response/INews";
 import NewsCard from "../NewsCard/NewsCard";
+import { List } from "./NewsList.styled";
 
 interface NewsListProps {
   news: INews[];
@@ -8,11 +9,11 @@ interface NewsListProps {
 
 const NewsList: FC<NewsListProps> = ({ news }) => {
   return (
-    <ul>
+    <List>
       {news?.map((item) => (
         <NewsCard key={item._id} news={item} />
       ))}
-    </ul>
+    </List>
   );
 };
 

@@ -3,7 +3,7 @@ import Home from "../components/Home/Home";
 
 const HomePage = () => {
   return (
-    <Container>
+    <Container padding="0 32px">
       <Home />
     </Container>
   );

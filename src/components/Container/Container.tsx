@@ -5,9 +5,10 @@ import { useLocation } from "react-router-dom";
 type ComponentProps = {
   children: ReactNode;
   onClick?: () => void;
+  padding?: string;
 };
 
-const Container: FC<ComponentProps> = ({ children, onClick }) => {
+const Container: FC<ComponentProps> = ({ children, onClick, padding = '0 64px' }) => {
   const location = useLocation();
   const isAuthPage =
     location.pathname === "/login" || location.pathname === "/register";
@@ -19,7 +20,7 @@ const Container: FC<ComponentProps> = ({ children, onClick }) => {
   };
 
   return (
-    <Box $isAuthPage={isAuthPage} onClick={handleCloseMenu}>
+    <Box $isAuthPage={isAuthPage} onClick={handleCloseMenu} $padding={padding}>
       {children}
     </Box>
   );

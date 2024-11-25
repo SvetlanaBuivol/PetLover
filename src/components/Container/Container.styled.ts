@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Box = styled.div<{ $isAuthPage: boolean }>`
+export const Box = styled.div<{ $isAuthPage: boolean, $padding: string }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -28,6 +28,7 @@ export const Box = styled.div<{ $isAuthPage: boolean }>`
   }
 
   @media screen and (min-width: 1280px) {
+    padding: ${({$padding})=> $padding};
     ${({ $isAuthPage }) =>
       $isAuthPage &&
       `

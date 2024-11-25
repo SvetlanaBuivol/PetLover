@@ -8,7 +8,7 @@ import Container from "../components/Container/Container";
 
 const LogInPage: FC = () => {
   return (
-    <Container>
+    <Container padding='0 32px'>
       <PetBlock
         imageSources={{
           mobile: {

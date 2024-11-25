@@ -1,25 +1,43 @@
 import { FC } from "react";
 import { INews } from "../../../models/response/INews";
+import {
+  Box,
+  Card,
+  Date,
+  ImageBox,
+  ReadMoreLink,
+  Text,
+  Title,
+} from "./NewsCard.styled";
+import { formatDate } from "../../../helpers/formatDate";
 
-interface NewsCardProps { 
+interface NewsCardProps {
   news: INews;
 }
 
-const NewsCard: FC<NewsCardProps> = ({news}) => {
+const NewsCard: FC<NewsCardProps> = ({ news }) => {
+  const formattedDate = formatDate(news?.date);
+
   return (
-    <li>
-      <div>
+    <Card>
+      <ImageBox>
         <img src={news.imgUrl} alt="" />
-      </div>
+      </ImageBox>
       <div>
-        <h2>{news.title}</h2>
-        <p>{news.text}</p>
-        <div>
-          <p>{news.date}</p>
-          <a href={news.url}>Read more</a>
-        </div>
+        <Title>{news.title}</Title>
+        <Text>{news.text}</Text>
+        <Box>
+          <Date>{formattedDate}</Date>
+          <ReadMoreLink
+            href={news.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read more
+          </ReadMoreLink>
+        </Box>
       </div>
-    </li>
+    </Card>
   );
 };
 

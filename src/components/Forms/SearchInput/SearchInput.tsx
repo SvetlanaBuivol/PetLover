@@ -1,25 +1,56 @@
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC, KeyboardEvent, useState } from "react";
+import { DeleteButton, SearchButton, Wrapper } from "./SearchInput.styled";
 
 interface SearchInputProps {
-  keyword: string;
+  isNewsPage?: boolean;
   onSearch: (newKeyword: string) => void;
 }
 
-const SearchInput: FC<SearchInputProps> = ({ keyword, onSearch }) => {
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    onSearch(e.target.value);
+const SearchInput: FC<SearchInputProps> = ({
+  isNewsPage = false,
+  onSearch,
+}) => {
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleDeleteSearch = () => {
+    setSearchValue('')
+    onSearch('');
+  }
+
+  const handleSearch = () => {
+    onSearch(searchValue);
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch(); 
+    }
   };
 
   return (
-    <div>
+    <Wrapper $isNewsPage={isNewsPage}>
       <input
         type="text"
         placeholder="Search"
-        value={keyword}
-        onChange={handleSearch}
+        value={searchValue}
+        onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
       />
-      <button>Click</button>
-    </div>
+      {searchValue && (
+        <DeleteButton onClick={handleDeleteSearch}>
+          <svg><use xlinkHref="svg/svgSprite.svg#icon-cross-black"></use></svg>
+        </DeleteButton>
+      )}
+      <SearchButton onClick={handleSearch}>
+        <svg>
+          <use xlinkHref="svg/svgSprite.svg#icon-search"></use>
+        </svg>
+      </SearchButton>
+    </Wrapper>
   );
 };
 
