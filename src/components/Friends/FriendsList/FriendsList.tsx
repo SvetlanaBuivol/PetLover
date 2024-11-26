@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { FriendsResponse } from "../../../models/response/FriendsResponse";
 import FriendCard from "../FriendCard/FriendCard";
+import { List } from "./FriendsList.styled";
 
 interface FriendsListProps {
   friends: FriendsResponse[];
@@ -8,11 +9,11 @@ interface FriendsListProps {
 
 const FriendsList: FC<FriendsListProps> = ({ friends }) => {
   return (
-    <ul>
+    <List>
       {friends.map((friend) => (
         <FriendCard key={friend._id} friend={friend} />
       ))}
-    </ul>
+    </List>
   );
 };
 
