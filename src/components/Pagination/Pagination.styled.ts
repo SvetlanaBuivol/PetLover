@@ -4,6 +4,13 @@ export const Box = styled.div`
   display: flex;
   gap: 11px;
   margin-top: 44px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 60px;
+    gap: 24px;
+  }
 `;
 
 export const ArrowsButton = styled.div<{ $isLeft?: boolean }>`
@@ -27,6 +34,16 @@ export const ArrowsButton = styled.div<{ $isLeft?: boolean }>`
         `
         transform: scale(-1, 1);
       `}
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    gap: 8px;
+    button {
+      svg {
+        width: 24px;
+        height: 24px;
+      }
     }
   }
 `;
@@ -72,6 +89,24 @@ export const Button = styled.button<{
     background-color: var(--accent-color);
     color: var(--white-color);
   `}
+
+  @media screen and (min-width: 768px) {
+    width: 44px;
+    height: 44px;
+    font-size: var(--text-size-m);
+    ${({ $isDouble }) =>
+      $isDouble &&
+      `
+     svg {
+    &:first-child {
+     left: 8px;
+    }
+    &:last-child {
+        right: 8px;
+    }
+  }
+  `}
+  }
 `;
 
 export const Ellipsis = styled.p`
@@ -85,4 +120,10 @@ export const Ellipsis = styled.p`
   border: 1px solid var(--primary-text-color-5);
   font-size: var(--text-size-s);
   letter-spacing: 0;
+
+  @media screen and (min-width: 768px) {
+    width: 44px;
+    height: 44px;
+    font-size: var(--text-size-l);
+  }
 `;

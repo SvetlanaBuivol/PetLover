@@ -6,6 +6,8 @@ import {
   Ellipsis,
   NumbersButton,
 } from "./Pagination.styled";
+import { useMediaQuery } from "react-responsive";
+import { createPageNumbers } from "../../helpers/createPageNumbers";
 
 interface PaginationProps {
   totalPages: number;
@@ -18,21 +20,9 @@ const Pagination: FC<PaginationProps> = ({
   currentPage,
   onPageChange,
 }) => {
-  const createPageNumbers = () => {
-    const pages: (number | "...")[] = [];
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
-    if (currentPage === 1) {
-      pages.push(1, 2, "...");
-    } else if (currentPage === totalPages) {
-      pages.push("...", currentPage - 1, currentPage);
-    } else {
-      pages.push(currentPage - 1, currentPage, "...");
-    }
-
-    return pages;
-  };
-
-  const pages = createPageNumbers();
+  const pages = createPageNumbers(isMobile, currentPage, totalPages);
 
   if (totalPages <= 1) {
     return null;

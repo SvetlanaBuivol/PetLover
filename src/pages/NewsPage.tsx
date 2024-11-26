@@ -12,9 +12,6 @@ const NewsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const { news } = useNews(currentPage, keyword);
-  if (news) {
-    console.log("NewsPage  news", news);
-  }
 
   const handleSearch = (newKeyword: string) => {
     setKeyword(newKeyword);

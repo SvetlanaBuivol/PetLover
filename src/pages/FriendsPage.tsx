@@ -14,8 +14,8 @@ const FriendsPage: FC = () => {
 
   return (
     <Section>
-          <Container>
-              <Title title={'Friends'} />
+      <Container>
+        <Title title={"Friends"} />
         <FriendsList friends={friends || []} />
       </Container>
     </Section>
