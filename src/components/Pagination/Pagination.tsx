@@ -47,10 +47,10 @@ const Pagination: FC<PaginationProps> = ({
           disabled={currentPage === 1}
         >
           <svg>
-            <use xlinkHref="svg/svgSprite.svg#icon-arrow"></use>
+            <use xlinkHref="/PetLover/svg/svgSprite.svg#icon-arrow"></use>
           </svg>
           <svg>
-            <use xlinkHref="svg/svgSprite.svg#icon-arrow"></use>
+            <use xlinkHref="/PetLover/svg/svgSprite.svg#icon-arrow"></use>
           </svg>
         </Button>
         <Button
@@ -58,7 +58,7 @@ const Pagination: FC<PaginationProps> = ({
           disabled={currentPage === 1}
         >
           <svg>
-            <use xlinkHref="svg/svgSprite.svg#icon-arrow"></use>
+            <use xlinkHref="/PetLover/svg/svgSprite.svg#icon-arrow"></use>
           </svg>
         </Button>
       </ArrowsButton>
@@ -85,7 +85,7 @@ const Pagination: FC<PaginationProps> = ({
           disabled={currentPage === totalPages}
         >
           <svg>
-            <use xlinkHref="svg/svgSprite.svg#icon-arrow"></use>
+            <use xlinkHref="/PetLover/svg/svgSprite.svg#icon-arrow"></use>
           </svg>
         </Button>
         <Button
@@ -94,10 +94,10 @@ const Pagination: FC<PaginationProps> = ({
           $isDouble={true}
         >
           <svg>
-            <use xlinkHref="svg/svgSprite.svg#icon-arrow"></use>
+            <use xlinkHref="/PetLover/svg/svgSprite.svg#icon-arrow"></use>
           </svg>
           <svg>
-            <use xlinkHref="svg/svgSprite.svg#icon-arrow"></use>
+            <use xlinkHref="/PetLover/svg/svgSprite.svg#icon-arrow"></use>
           </svg>
         </Button>
       </ArrowsButton>
