@@ -65,6 +65,25 @@ export const Address = styled.address`
   gap: 8px;
 `;
 
+export const Link = styled.a`
+  width: 196px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  color: inherit;
+  cursor: pointer;
+  transition: color 200ms ease-in-out;
+  &:hover {
+    color: var(--accent-color);
+  }
+  span {
+    color: var(--primary-text-color-50);
+  }
+`;
+
 export const Text = styled.p`
   width: 196px;
   overflow: hidden;
