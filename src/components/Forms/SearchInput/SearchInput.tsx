@@ -1,33 +1,39 @@
-import { ChangeEvent, FC, KeyboardEvent, useState } from "react";
+import { ChangeEvent, FC, KeyboardEvent, useEffect, useState } from "react";
 import { DeleteButton, SearchButton, Wrapper } from "./SearchInput.styled";
 
 interface SearchInputProps {
   isNewsPage?: boolean;
+  initialValue?: string;
   onSearch: (newKeyword: string) => void;
 }
 
 const SearchInput: FC<SearchInputProps> = ({
   isNewsPage = false,
   onSearch,
+  initialValue = "",
 }) => {
   const [searchValue, setSearchValue] = useState("");
+
+  useEffect(() => {
+    setSearchValue(initialValue);
+  }, [initialValue]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
   const handleDeleteSearch = () => {
-    setSearchValue('')
-    onSearch('');
-  }
+    setSearchValue("");
+    onSearch("");
+  };
 
   const handleSearch = () => {
     onSearch(searchValue);
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleSearch(); 
+    if (e.key === "Enter") {
+      handleSearch();
     }
   };
 
@@ -42,7 +48,9 @@ const SearchInput: FC<SearchInputProps> = ({
       />
       {searchValue && (
         <DeleteButton onClick={handleDeleteSearch}>
-          <svg><use xlinkHref="svg/svgSprite.svg#icon-cross-black"></use></svg>
+          <svg>
+            <use xlinkHref="svg/svgSprite.svg#icon-cross-black"></use>
+          </svg>
         </DeleteButton>
       )}
       <SearchButton onClick={handleSearch}>
