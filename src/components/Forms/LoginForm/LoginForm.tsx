@@ -14,7 +14,6 @@ const LoginForm: FC = () => {
   const { signin } = useSignin();
 
   const onSubmit = (data: LoginFormData) => {
-    console.log("Login data: ", data);
     signin({ email: data.email, password: data.password });
     reset();
   };

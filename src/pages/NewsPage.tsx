@@ -17,7 +17,6 @@ const NewsPage = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    console.log("useEffect  params", params);
     const keywordParam = params.get("keyword") || "";
     const pageParam = parseInt(params.get("page") || "1", 10);
 

@@ -13,5 +13,5 @@ export interface IPetInfo {
     createdAt: string;
     user: string;
     popularity: number;
-    updatedAt: string;
+    updatedAt?: string;
 }

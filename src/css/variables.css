@@ -8,7 +8,9 @@
     --secondary-text-color: rgba(38, 38, 38, 0.5);
     --dark-text-color: #2B2B2A;
     --accent-color: #F6B83D;
+    --accent-hover-color: #F9B020;
     --accent-light-color: #FFF4DF;
+    --accent-light-hover-color: #FBE7C1;
     --white-color: #FFFFFF;
     --white-color-50: rgba(255, 255, 255, 0.5);
     --white-color-40: rgba(255, 255, 255, 0.4);
