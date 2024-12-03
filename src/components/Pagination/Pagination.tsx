@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useMediaQuery } from "react-responsive";
 import {
   ArrowsButton,
   Box,
@@ -6,7 +7,6 @@ import {
   Ellipsis,
   NumbersButton,
 } from "./Pagination.styled";
-import { useMediaQuery } from "react-responsive";
 import { createPageNumbers } from "../../helpers/createPageNumbers";
 
 interface PaginationProps {
