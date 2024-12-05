@@ -17,9 +17,10 @@ import { formatBirthday } from "../../../helpers/formatBirthday";
 
 interface NoticeCardProps {
   notice: IPetInfo;
+  openPetInfoModal: (id: string) => void;
 }
 
-const NoticeCard: FC<NoticeCardProps> = ({ notice }) => {
+const NoticeCard: FC<NoticeCardProps> = ({ notice, openPetInfoModal }) => {
   return (
     <Card>
       <ImageBox>
@@ -56,7 +57,12 @@ const NoticeCard: FC<NoticeCardProps> = ({ notice }) => {
         <Text>{notice.comment}</Text>
       </div>
       <FavBox>
-        <LearnMoreButton type="button">Learn more</LearnMoreButton>
+        <LearnMoreButton
+          type="button"
+          onClick={() => openPetInfoModal(notice._id)}
+        >
+          Learn more
+        </LearnMoreButton>
         <FavoriteButton>
           <svg width={18} height={18}>
             <use xlinkHref="svg/svgSprite.svg#icon-fav"></use>

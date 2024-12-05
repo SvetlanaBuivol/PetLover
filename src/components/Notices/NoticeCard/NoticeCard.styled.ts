@@ -58,6 +58,7 @@ export const PopularityBox = styled.div`
   svg {
     width: 16px;
     height: 16px;
+    fill: var(--accent-color);
   }
 `;
 
