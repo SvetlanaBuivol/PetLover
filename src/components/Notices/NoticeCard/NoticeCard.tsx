@@ -89,7 +89,7 @@ const NoticeCard: FC<NoticeCardProps> = ({
         >
           Learn more
         </LearnMoreButton>
-        <FavoriteButton onClick={handleToggleFavorite} $isFavorite={isFavorite}>
+        <FavoriteButton onClick={isAuth ? () => handleToggleFavorite() : () => openAttentionModal()} $isFavorite={isFavorite}>
           <svg width={18} height={18}>
             <use xlinkHref="svg/svgSprite.svg#icon-fav"></use>
           </svg>
