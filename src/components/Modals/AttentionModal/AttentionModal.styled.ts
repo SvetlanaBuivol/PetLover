@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { List, Login, Register, StyledNav } from "../../Header/AuthNav/AuthNav.styled";
+import {
+  List,
+  Login,
+  Register,
+  StyledNav,
+} from "../../Header/AuthNav/AuthNav.styled";
 
 export const Icon = styled.div`
   display: flex;
@@ -41,23 +46,23 @@ export const Text = styled.p`
 `;
 
 export const Box = styled.div`
-${StyledNav} {
+  ${StyledNav} {
     width: 272px;
-}
-${List} {
+  }
+  ${List} {
     flex-direction: row;
     text-transform: none;
-}
+  }
 
-@media screen and (min-width: 768px) {
-   ${StyledNav} {
-    width: 288px;
-} 
-${Login} {
-    width: 140px;
-}
-${Register} {
-    width: 140px;
-}
-}
-`
+  @media screen and (min-width: 768px) {
+    ${StyledNav} {
+      width: 288px;
+    }
+    ${Login} {
+      width: 140px;
+    }
+    ${Register} {
+      width: 140px;
+    }
+  }
+`;

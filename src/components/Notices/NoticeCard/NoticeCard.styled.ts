@@ -146,7 +146,7 @@ export const LearnMoreButton = styled.button`
   }
 `;
 
-export const FavoriteButton = styled.button`
+export const FavoriteButton = styled.button<{ $isFavorite?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,7 +157,8 @@ export const FavoriteButton = styled.button`
   transition: background-color 200ms ease-in-out;
   svg {
     stroke: var(--accent-color);
-    fill: none;
+    fill: ${({ $isFavorite }) =>
+      $isFavorite ? "var(--accent-color)" : "none"};
   }
 
   &:hover {

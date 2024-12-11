@@ -23,7 +23,7 @@ const AttentionModal: FC<AttentionModalProps> = ({ isOpen, onClose }) => {
       </Text>
       <Box>
         <AuthNav isHome={false} isHeader={false} onClose={onClose} />
-        </Box>
+      </Box>
     </CommonModal>
   );
 };

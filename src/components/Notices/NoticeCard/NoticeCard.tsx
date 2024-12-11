@@ -14,15 +14,34 @@ import {
   TitleBox,
 } from "./NoticeCard.styled";
 import { formatBirthday } from "../../../helpers/formatBirthday";
+import { useAddToFav } from "../../../hooks/notices/useAddToFav";
+import { useRemoveFromFav } from "../../../hooks/notices/useRemoveFromFav";
 
 interface NoticeCardProps {
   notice: IPetInfo<string>;
   openPetInfoModal: (id: string) => void;
   openAttentionModal: () => void;
+  isFavorite: boolean;
 }
 
-const NoticeCard: FC<NoticeCardProps> = ({ notice, openPetInfoModal, openAttentionModal }) => {
+const NoticeCard: FC<NoticeCardProps> = ({
+  notice,
+  openPetInfoModal,
+  openAttentionModal,
+  isFavorite,
+}) => {
   const isAuth = localStorage.getItem("token");
+  const { addToFav } = useAddToFav(notice._id);
+  const { removeFromFav } = useRemoveFromFav(notice._id);
+
+  const handleToggleFavorite = () => {
+    console.log("pressed FAV");
+    if (isFavorite) {
+      removeFromFav(notice._id);
+    } else {
+      addToFav(notice._id);
+    }
+  };
 
   return (
     <Card>
@@ -62,11 +81,15 @@ const NoticeCard: FC<NoticeCardProps> = ({ notice, openPetInfoModal, openAttenti
       <FavBox>
         <LearnMoreButton
           type="button"
-          onClick={isAuth ? () => openPetInfoModal(notice._id) : () => openAttentionModal()}
+          onClick={
+            isAuth
+              ? () => openPetInfoModal(notice._id)
+              : () => openAttentionModal()
+          }
         >
           Learn more
         </LearnMoreButton>
-        <FavoriteButton>
+        <FavoriteButton onClick={handleToggleFavorite} $isFavorite={isFavorite}>
           <svg width={18} height={18}>
             <use xlinkHref="svg/svgSprite.svg#icon-fav"></use>
           </svg>

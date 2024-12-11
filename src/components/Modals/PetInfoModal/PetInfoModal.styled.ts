@@ -84,6 +84,7 @@ export const FavButton = styled.button`
   transition: background-color 200ms ease-in-out;
   svg {
     stroke: var(--white-color);
+    fill: none;
   }
   &:hover {
     background-color: var(--accent-hover-color);

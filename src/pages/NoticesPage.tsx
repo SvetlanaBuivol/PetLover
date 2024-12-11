@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Container from "../components/Container/Container";
 import NoticesFilters from "../components/Forms/NoticesFilters/NoticesFilters";
 import { useNotices } from "../hooks/notices/useNotices";
@@ -9,6 +9,9 @@ import Pagination from "../components/Pagination/Pagination";
 import PetInfoModal from "../components/Modals/PetInfoModal/PetInfoModal";
 import ContactModal from "../components/Modals/ContactModal/ContactModal";
 import AttentionModal from "../components/Modals/AttentionModal/AttentionModal";
+import { useCurrentUser } from "../hooks/users/useCurrentUser";
+import { useAddToFav } from "../hooks/notices/useAddToFav";
+import { useRemoveFromFav } from "../hooks/notices/useRemoveFromFav";
 
 const NoticesPage: FC = () => {
   const [filters, setFilters] = useState({
@@ -25,11 +28,56 @@ const NoticesPage: FC = () => {
   const [isPetInfoModalOpen, setIsPetInfoModalOpen] = useState(false);
   const [selectedPetId, setSelectedPetId] = useState<string | null>(null);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-  const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false)
+  const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const isAuth = localStorage.getItem("token");
 
+  const { user } = useCurrentUser();
+  const { addToFav } = useAddToFav(selectedPetId);
+  const { removeFromFav } = useRemoveFromFav(selectedPetId);
   const { notices } = useNotices(filters);
+  console.log("notice page USER", user);
+
+  useEffect(() => {
+    if (user?.data && selectedPetId) {
+      const favorite = user.data.noticesFavorites.some(
+        (item) => item._id === selectedPetId
+      );
+      setIsFavorite(favorite);
+    } else {
+      setIsFavorite(false);
+    }
+  }, [user, selectedPetId]);
+
+  const handleAddToFav = () => {
+    if (selectedPetId) {
+      addToFav(selectedPetId, {
+        onSuccess: () => {
+          console.log("Successfully added to favorites");
+          setIsFavorite(true);
+        },
+        onError: (error) => {
+          console.error("Failed to add to favorites", error);
+          console.error("Failed to add to favorites");
+        },
+      });
+    }
+  };
+
+  const handleRemoveFromFav = () => {
+    if (selectedPetId) {
+      removeFromFav(selectedPetId, {
+        onSuccess: () => {
+          console.log("Successfully removed from favorites");
+          setIsFavorite(false);
+        },
+        onError: (error) => {
+          console.log("Failed to remove to favorites", error);
+        },
+      });
+    }
+  };
 
   const handlePageChange = (page: number) => {
     setFilters((prev) => ({ ...prev, page }));
@@ -46,7 +94,7 @@ const NoticesPage: FC = () => {
   };
 
   const handleOpenContactModal = (petId: string) => {
-    setSelectedPetId(petId)
+    setSelectedPetId(petId);
     setIsContactModalOpen(true);
   };
 
@@ -55,12 +103,12 @@ const NoticesPage: FC = () => {
   };
 
   const handleOpenAttentionModal = () => {
-    setIsAttentionModalOpen(true)
-  }
+    setIsAttentionModalOpen(true);
+  };
 
-   const handleCloseAttentionModal = () => {
-    setIsAttentionModalOpen(false)
-  }
+  const handleCloseAttentionModal = () => {
+    setIsAttentionModalOpen(false);
+  };
 
   return (
     <>
@@ -72,6 +120,7 @@ const NoticesPage: FC = () => {
             notices={notices?.results || []}
             openPetInfoModal={handleOpenPetInfoModal}
             openAttentionModal={handleOpenAttentionModal}
+            favoriteNotices={user?.data?.noticesFavorites || []}
           />
           <Pagination
             totalPages={notices?.totalPages || 0}
@@ -87,6 +136,9 @@ const NoticesPage: FC = () => {
           onClose={handleClosePetInfoModal}
           petId={selectedPetId}
           onOpenContactModal={handleOpenContactModal}
+          isFavorite={isFavorite}
+          removeFromFav={handleRemoveFromFav}
+          addToFav={handleAddToFav}
         />
       ) : null}
 
@@ -96,7 +148,10 @@ const NoticesPage: FC = () => {
         petId={selectedPetId}
       />
 
-      <AttentionModal isOpen={isAttentionModalOpen} onClose={handleCloseAttentionModal} />
+      <AttentionModal
+        isOpen={isAttentionModalOpen}
+        onClose={handleCloseAttentionModal}
+      />
     </>
   );
 };

@@ -29,8 +29,12 @@ export default class NoticesServise {
   }
   static async getNoticeById(
     id: string | null
-  ): Promise<AxiosResponse<IPetInfo<{ _id: string; email: string; phone: string; }>>> {
-    return $api.get<IPetInfo<{ _id: string; email: string; phone: string; }>>(`/notices/${id}`);
+  ): Promise<
+    AxiosResponse<IPetInfo<{ _id: string; email: string; phone: string }>>
+  > {
+    return $api.get<IPetInfo<{ _id: string; email: string; phone: string }>>(
+      `/notices/${id}`
+    );
   }
   static async getCategories(): Promise<AxiosResponse<Categories[]>> {
     return $api.get<Categories[]>("/notices/categories");
