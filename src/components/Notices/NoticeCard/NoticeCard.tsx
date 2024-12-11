@@ -16,11 +16,14 @@ import {
 import { formatBirthday } from "../../../helpers/formatBirthday";
 
 interface NoticeCardProps {
-  notice: IPetInfo;
+  notice: IPetInfo<string>;
   openPetInfoModal: (id: string) => void;
+  openAttentionModal: () => void;
 }
 
-const NoticeCard: FC<NoticeCardProps> = ({ notice, openPetInfoModal }) => {
+const NoticeCard: FC<NoticeCardProps> = ({ notice, openPetInfoModal, openAttentionModal }) => {
+  const isAuth = localStorage.getItem("token");
+
   return (
     <Card>
       <ImageBox>
@@ -59,7 +62,7 @@ const NoticeCard: FC<NoticeCardProps> = ({ notice, openPetInfoModal }) => {
       <FavBox>
         <LearnMoreButton
           type="button"
-          onClick={() => openPetInfoModal(notice._id)}
+          onClick={isAuth ? () => openPetInfoModal(notice._id) : () => openAttentionModal()}
         >
           Learn more
         </LearnMoreButton>

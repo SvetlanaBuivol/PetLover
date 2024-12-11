@@ -9,7 +9,7 @@ export interface UsersResponse {
     phone?: string;
     createdAt?: string;
     updatedAt?: string;
-    noticesFavorites: IPetInfo[];
-    noticesViewed?: IPetInfo[];
-    pets?: Omit<IPetInfo[], 'price'|'category'|'comment'|'location'|'user'|'popularity'>
+    noticesFavorites: IPetInfo<string>[];
+    noticesViewed?: IPetInfo<string>[];
+    pets?: Omit<IPetInfo<string>[], 'price'|'category'|'comment'|'location'|'user'|'popularity'>
 }

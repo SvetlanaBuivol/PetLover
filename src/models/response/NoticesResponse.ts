@@ -4,7 +4,7 @@ export interface NoticesResponse {
   page: number;
   perPage: number;
   totalPages: number;
-  results: IPetInfo[];
+  results: IPetInfo<string>[];
 }
 
 export type Categories = "found" | "free" | "lost" | "sell";

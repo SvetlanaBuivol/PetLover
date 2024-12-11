@@ -7,6 +7,8 @@ import Section from "../components/Section/Section";
 import Title from "../components/Title/Title";
 import Pagination from "../components/Pagination/Pagination";
 import PetInfoModal from "../components/Modals/PetInfoModal/PetInfoModal";
+import ContactModal from "../components/Modals/ContactModal/ContactModal";
+import AttentionModal from "../components/Modals/AttentionModal/AttentionModal";
 
 const NoticesPage: FC = () => {
   const [filters, setFilters] = useState({
@@ -22,8 +24,10 @@ const NoticesPage: FC = () => {
   });
   const [isPetInfoModalOpen, setIsPetInfoModalOpen] = useState(false);
   const [selectedPetId, setSelectedPetId] = useState<string | null>(null);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isAttentionModalOpen, setIsAttentionModalOpen] = useState(false)
 
-  const isAuth = localStorage.getItem('token')
+  const isAuth = localStorage.getItem("token");
 
   const { notices } = useNotices(filters);
 
@@ -41,6 +45,23 @@ const NoticesPage: FC = () => {
     setIsPetInfoModalOpen(false);
   };
 
+  const handleOpenContactModal = (petId: string) => {
+    setSelectedPetId(petId)
+    setIsContactModalOpen(true);
+  };
+
+  const handleCloseContactModal = () => {
+    setIsContactModalOpen(false);
+  };
+
+  const handleOpenAttentionModal = () => {
+    setIsAttentionModalOpen(true)
+  }
+
+   const handleCloseAttentionModal = () => {
+    setIsAttentionModalOpen(false)
+  }
+
   return (
     <>
       <Section>
@@ -50,6 +71,7 @@ const NoticesPage: FC = () => {
           <NoticesList
             notices={notices?.results || []}
             openPetInfoModal={handleOpenPetInfoModal}
+            openAttentionModal={handleOpenAttentionModal}
           />
           <Pagination
             totalPages={notices?.totalPages || 0}
@@ -59,12 +81,22 @@ const NoticesPage: FC = () => {
         </Container>
       </Section>
 
-      {isAuth ? <PetInfoModal
-        isOpen={isPetInfoModalOpen}
-        onClose={handleClosePetInfoModal}
+      {isAuth ? (
+        <PetInfoModal
+          isOpen={isPetInfoModalOpen}
+          onClose={handleClosePetInfoModal}
+          petId={selectedPetId}
+          onOpenContactModal={handleOpenContactModal}
+        />
+      ) : null}
+
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={handleCloseContactModal}
         petId={selectedPetId}
-      /> : null}
-      
+      />
+
+      <AttentionModal isOpen={isAttentionModalOpen} onClose={handleCloseAttentionModal} />
     </>
   );
 };

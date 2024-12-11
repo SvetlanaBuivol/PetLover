@@ -27,7 +27,9 @@ export default class NoticesServise {
       },
     });
   }
-   static async getNoticeById(id: string | null): Promise<AxiosResponse<IPetInfo>> {
+  static async getNoticeById(
+    id: string | null
+  ): Promise<AxiosResponse<IPetInfo>> {
     return $api.get<IPetInfo>(`/notices/${id}`);
   }
   static async getCategories(): Promise<AxiosResponse<Categories[]>> {

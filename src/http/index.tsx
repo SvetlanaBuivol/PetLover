@@ -16,14 +16,36 @@ $api.interceptors.request.use((config) => {
   return config;
 });
 
+// $api.interceptors.response.use(
+//   (response) => response,
+//   (error) => {
+//     console.log("interceptor error", error.status);
+//     if (error.status === 401) {
+//       localStorage.removeItem("token");
+//     }
+//   }
+// );
+
 $api.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        console.log('interceptor error', error.status)
-        if (error.status === 401) {
-            localStorage.removeItem('token')
-        }
+  (response) => response, // Успешный ответ
+  (error) => {
+    if (error.response) {
+      // Проверяем статус ошибки через error.response.status
+      console.log("interceptor error", error.response.status);
+
+      // Если ошибка 401, удаляем токен
+      if (error.response.status === 401) {
+        localStorage.removeItem("token");
+      }
+
+      // Пробрасываем ошибку дальше
+      return Promise.reject(error);
     }
+
+    // Если нет ответа от сервера (например, сетевая ошибка)
+    console.error("Network error", error);
+    return Promise.reject(error);
+  }
 );
 
 export default $api;

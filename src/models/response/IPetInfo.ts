@@ -1,6 +1,6 @@
 import { ILocation } from "./ILocation";
 
-export interface IPetInfo {
+export interface IPetInfo<T> {
     _id: string;
     price?: number;
     species: string;
@@ -13,7 +13,7 @@ export interface IPetInfo {
     location: string | ILocation;
     imgURL: string;
     createdAt: string;
-    user: string | {_id: string, email: string, phone: string};
+    user: T;
     popularity: number;
     updatedAt?: string;
 }
