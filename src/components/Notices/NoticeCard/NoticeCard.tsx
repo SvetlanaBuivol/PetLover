@@ -31,6 +31,7 @@ const NoticeCard: FC<NoticeCardProps> = ({
   isFavorite,
 }) => {
   const isAuth = localStorage.getItem("token");
+  
   const { addToFav } = useAddToFav(notice._id);
   const { removeFromFav } = useRemoveFromFav(notice._id);
 
@@ -89,7 +90,12 @@ const NoticeCard: FC<NoticeCardProps> = ({
         >
           Learn more
         </LearnMoreButton>
-        <FavoriteButton onClick={isAuth ? () => handleToggleFavorite() : () => openAttentionModal()} $isFavorite={isFavorite}>
+        <FavoriteButton
+          onClick={
+            isAuth ? () => handleToggleFavorite() : () => openAttentionModal()
+          }
+          $isFavorite={isFavorite}
+        >
           <svg width={18} height={18}>
             <use xlinkHref="svg/svgSprite.svg#icon-fav"></use>
           </svg>

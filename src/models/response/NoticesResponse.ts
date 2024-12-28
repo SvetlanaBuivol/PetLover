@@ -7,7 +7,8 @@ export interface NoticesResponse {
   results: IPetInfo<string>[];
 }
 
-export type Categories = "found" | "free" | "lost" | "sell";
+// export type Categories = "found" | "free" | "lost" | "sell";
+export type Categories = string;
 
 export type Sex = "female" | "male" | "multiple" | "unknown";
 

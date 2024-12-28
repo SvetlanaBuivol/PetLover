@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import Container from "../components/Container/Container";
-import NoticesFilters from "../components/Forms/NoticesFilters/NoticesFilters";
+import NoticesFilters from "../components/Forms/NoticesFilters/NoticesFiltersForm";
 import { useNotices } from "../hooks/notices/useNotices";
 import NoticesList from "../components/Notices/NoticesList/NoticesList";
 import Section from "../components/Section/Section";
@@ -12,19 +12,23 @@ import AttentionModal from "../components/Modals/AttentionModal/AttentionModal";
 import { useCurrentUser } from "../hooks/users/useCurrentUser";
 import { useAddToFav } from "../hooks/notices/useAddToFav";
 import { useRemoveFromFav } from "../hooks/notices/useRemoveFromFav";
+import { useForm } from "react-hook-form";
+import { FilterFormData } from "../models/request/FilterFormData";
 
 const NoticesPage: FC = () => {
-  const [filters, setFilters] = useState({
-    keyword: "",
-    category: "",
-    species: "",
-    locationId: "",
-    page: 1,
-    sex: "",
-    byPrice: false,
-    byPopularity: false,
-    byDate: false,
+  const { control, watch, reset } = useForm<FilterFormData>({
+    defaultValues: {
+      keyword: '',
+      category: '',
+      species: '',
+      sex: '',
+      locationId: '',
+      byPrice: null,
+      byPopularity: null,
+      page: 1,
+    },
   });
+
   const [isPetInfoModalOpen, setIsPetInfoModalOpen] = useState(false);
   const [selectedPetId, setSelectedPetId] = useState<string | null>(null);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -33,11 +37,15 @@ const NoticesPage: FC = () => {
 
   const isAuth = localStorage.getItem("token");
 
+  const filters = watch();
+
   const { user } = useCurrentUser();
   const { addToFav } = useAddToFav(selectedPetId);
   const { removeFromFav } = useRemoveFromFav(selectedPetId);
+ 
   const { notices } = useNotices(filters);
-  console.log("notice page USER", user);
+
+   console.log("notices", notices)
 
   useEffect(() => {
     if (user?.data && selectedPetId) {
@@ -80,7 +88,7 @@ const NoticesPage: FC = () => {
   };
 
   const handlePageChange = (page: number) => {
-    setFilters((prev) => ({ ...prev, page }));
+    reset({ ...filters, page });
   };
 
   const handleOpenPetInfoModal = (petId: string) => {
@@ -115,7 +123,9 @@ const NoticesPage: FC = () => {
       <Section>
         <Container>
           <Title title={"Find your favorite pet"} />
-          <NoticesFilters />
+          <NoticesFilters
+            control={control}
+          />
           <NoticesList
             notices={notices?.results || []}
             openPetInfoModal={handleOpenPetInfoModal}
@@ -125,7 +135,7 @@ const NoticesPage: FC = () => {
           <Pagination
             totalPages={notices?.totalPages || 0}
             onPageChange={handlePageChange}
-            currentPage={filters.page}
+            currentPage={filters.page || 1}
           />
         </Container>
       </Section>

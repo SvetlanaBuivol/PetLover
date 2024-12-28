@@ -44,3 +44,30 @@ export function useNotices(filters: FilterFormData) {
 
   return { notices: data?.data, error };
 }
+
+export function useCategories() {
+  const { data, error } = useQuery({
+    queryKey: ['categories'],
+    queryFn: () => NoticesServise.getCategories(),
+    placeholderData: keepPreviousData,
+  })
+  return {categories: data?.data, error}
+}
+
+export function useSex() {
+  const { data, error } = useQuery({
+    queryKey: ['sex'],
+    queryFn: () => NoticesServise.getSex(),
+    placeholderData: keepPreviousData,
+  })
+  return {sex: data?.data, error}
+}
+
+export function useSpecies() {
+  const { data, error } = useQuery({
+    queryKey: ['species'],
+    queryFn: () => NoticesServise.getSpecies(),
+    placeholderData: keepPreviousData,
+  })
+  return {species: data?.data, error}
+}

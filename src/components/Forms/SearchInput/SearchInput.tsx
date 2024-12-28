@@ -3,12 +3,14 @@ import { DeleteButton, SearchButton, Wrapper } from "./SearchInput.styled";
 
 interface SearchInputProps {
   isNewsPage?: boolean;
+  isFiltersForm?: boolean;
   initialValue?: string;
   onSearch: (newKeyword: string) => void;
 }
 
 const SearchInput: FC<SearchInputProps> = ({
   isNewsPage = false,
+  isFiltersForm = false,
   onSearch,
   initialValue = "",
 }) => {
@@ -38,7 +40,7 @@ const SearchInput: FC<SearchInputProps> = ({
   };
 
   return (
-    <Wrapper $isNewsPage={isNewsPage}>
+    <Wrapper $isNewsPage={isNewsPage} $isFiltersForm={isFiltersForm}>
       <input
         type="text"
         placeholder="Search"
