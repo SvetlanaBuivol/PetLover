@@ -18,11 +18,11 @@ import { FilterFormData } from "../models/request/FilterFormData";
 const NoticesPage: FC = () => {
   const { control, watch, reset } = useForm<FilterFormData>({
     defaultValues: {
-      keyword: '',
-      category: '',
-      species: '',
-      sex: '',
-      locationId: '',
+      keyword: "",
+      category: "",
+      species: "",
+      sex: "",
+      locationId: "",
       byPrice: null,
       byPopularity: null,
       page: 1,
@@ -42,10 +42,8 @@ const NoticesPage: FC = () => {
   const { user } = useCurrentUser();
   const { addToFav } = useAddToFav(selectedPetId);
   const { removeFromFav } = useRemoveFromFav(selectedPetId);
- 
-  const { notices } = useNotices(filters);
 
-   console.log("notices", notices)
+  const { notices } = useNotices(filters);
 
   useEffect(() => {
     if (user?.data && selectedPetId) {
@@ -125,6 +123,8 @@ const NoticesPage: FC = () => {
           <Title title={"Find your favorite pet"} />
           <NoticesFilters
             control={control}
+            reset={reset} // Передаем reset в дочерний компонент
+            filters={filters}
           />
           <NoticesList
             notices={notices?.results || []}

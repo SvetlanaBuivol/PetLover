@@ -9,13 +9,26 @@ import { FilterFormData } from "../../../models/request/FilterFormData";
 import SearchInput from "../SearchInput/SearchInput";
 import Select from "react-select";
 import { useCities } from "../../../hooks/locations/useCities";
-import { Box, InputsWrapper, StyledForm } from "./NoticesFiltersForm.styled";
+import {
+  Box,
+  InputsWrapper,
+  Line,
+  RadioBox,
+  StyledForm,
+} from "./NoticesFiltersForm.styled";
+import RadioGroup from "./RadioGroup/RadioGroup";
 
 interface NoticesFiltersFormProps {
   control: Control<FilterFormData>;
+  reset: (data: FilterFormData) => void;
+  filters: FilterFormData;
 }
 
-const NoticesFiltersForm: FC<NoticesFiltersFormProps> = ({ control }) => {
+const NoticesFiltersForm: FC<NoticesFiltersFormProps> = ({
+  control,
+  reset,
+  filters,
+}) => {
   const [locationQuery, setLocationQuery] = useState<string>("");
 
   const { categories } = useCategories();
@@ -60,15 +73,16 @@ const NoticesFiltersForm: FC<NoticesFiltersFormProps> = ({ control }) => {
                 onChange={(selectedOption) =>
                   field.onChange(selectedOption?.value)
                 }
-                 value={
-          field.value
-            ? {
-                value: field.value,
-                label:
-                  field.value.charAt(0).toUpperCase() + field.value.slice(1), // Преобразуем значение для отображения
-              }
-            : null
-        } // Преобразуем label в value
+                value={
+                  field.value
+                    ? {
+                        value: field.value,
+                        label:
+                          field.value.charAt(0).toUpperCase() +
+                          field.value.slice(1),
+                      }
+                    : null
+                }
               />
             )}
           />
@@ -78,27 +92,28 @@ const NoticesFiltersForm: FC<NoticesFiltersFormProps> = ({ control }) => {
             control={control}
             render={({ field }) => (
               <Select
-                {...field} // Передаємо пропси з контролера
+                {...field}
                 className="my-select"
                 classNamePrefix="sex-select"
                 placeholder="By gender"
                 options={sex?.map((item) => ({
                   value: item,
                   label: item.charAt(0).toUpperCase() + item.slice(1),
-                }))} // Передаємо масив категорій
+                }))}
                 isClearable
                 onChange={(selectedOption) =>
                   field.onChange(selectedOption?.value)
-                } // Оновлення значення через field.onChange
+                }
                 value={
-          field.value
-            ? {
-                value: field.value,
-                label:
-                  field.value.charAt(0).toUpperCase() + field.value.slice(1), // Преобразуем значение для отображения
-              }
-            : null
-        } // Преобразуем label в value
+                  field.value
+                    ? {
+                        value: field.value,
+                        label:
+                          field.value.charAt(0).toUpperCase() +
+                          field.value.slice(1),
+                      }
+                    : null
+                }
               />
             )}
           />
@@ -109,27 +124,28 @@ const NoticesFiltersForm: FC<NoticesFiltersFormProps> = ({ control }) => {
           control={control}
           render={({ field }) => (
             <Select
-              {...field} // Передаємо пропси з контролера
+              {...field}
               className="my-select type-select"
               classNamePrefix="type-select"
               placeholder="By type"
               options={species?.map((item) => ({
                 value: item,
                 label: item.charAt(0).toUpperCase() + item.slice(1),
-              }))} // Передаємо масив категорій
+              }))}
               isClearable
               onChange={(selectedOption) =>
                 field.onChange(selectedOption?.value)
-              } // Оновлення значення через field.onChange
-              value={
-          field.value
-            ? {
-                value: field.value,
-                label:
-                  field.value.charAt(0).toUpperCase() + field.value.slice(1), // Преобразуем значение для отображения
               }
-            : null
-        } // Преобразуем label в value
+              value={
+                field.value
+                  ? {
+                      value: field.value,
+                      label:
+                        field.value.charAt(0).toUpperCase() +
+                        field.value.slice(1),
+                    }
+                  : null
+              }
             />
           )}
         />
@@ -165,69 +181,31 @@ const NoticesFiltersForm: FC<NoticesFiltersFormProps> = ({ control }) => {
         />
       </InputsWrapper>
 
-      <Controller
-        name="byPopularity"
-        control={control}
-        render={({ field }) => (
-          <label>
-            <input
-              type="radio"
-              value="popular"
-              checked={field.value === false}
-              onChange={() => field.onChange(false)}
-            />
-            Popular
-          </label>
-        )}
-      />
+      <Line></Line>
 
-      <Controller
-        name="byPopularity"
-        control={control}
-        render={({ field }) => (
-          <label>
-            <input
-              type="radio"
-              value="unpopular"
-              checked={field.value === true}
-              onChange={() => field.onChange(true)}
-            />
-            Unpopular
-          </label>
-        )}
-      />
+      <RadioBox>
+        <RadioGroup
+          control={control}
+          name="byPopularity"
+          options={[
+            { value: false, label: "Popular" },
+            { value: true, label: "Unpopular" },
+          ]}
+          reset={reset}
+          filters={filters}
+        />
 
-      <Controller
-        name="byPrice"
-        control={control}
-        render={({ field }) => (
-          <label>
-            <input
-              type="radio"
-              value="cheap"
-              checked={field.value === true}
-              onChange={() => field.onChange(true)}
-            />
-            Cheap
-          </label>
-        )}
-      />
-
-      <Controller
-        name="byPrice"
-        control={control}
-        render={({ field }) => (
-          <label>
-            <input
-              type="radio"
-              value="expensive"
-              checked={field.value === false}
-              onChange={() => field.onChange(false)}
-            />
-            Expensive
-          </label>
-        )}
-      />
+        <RadioGroup
+          name="byPrice"
+          control={control}
+          options={[
+            { value: true, label: "Cheap" },
+            { value: false, label: "Expensive" },
+          ]}
+          reset={reset}
+          filters={filters}
+        />
+        </RadioBox>
     </StyledForm>
   );
 };

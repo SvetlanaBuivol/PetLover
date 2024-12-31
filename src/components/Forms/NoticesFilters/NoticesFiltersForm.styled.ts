@@ -5,18 +5,21 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  margin-top: 40px;
   background-color: var(--accent-light-color);
   border-radius: 30px;
 
   @media screen and (min-width: 768px) {
     padding: 40px 32px;
+    margin-top: 44px;
   }
 
-   @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1280px) {
     position: relative;
     left: -32px;
     padding: 40px;
     width: 1216px;
+    margin-top: 40px;
   }
 `;
 
@@ -154,11 +157,30 @@ export const Box = styled.div`
     gap: 16px;
   }
 
-   @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1280px) {
     width: 416px;
   }
 `;
 
 export const StyledSelect = styled(Select)`
   width: 100%;
+`;
+
+export const Line = styled.span`
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: var(--primary-text-color-10);
+`;
+
+export const RadioBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  @media screen and (min-width: 768px) {
+    gap: 8px;
+  }
 `;
